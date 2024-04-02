@@ -2,27 +2,35 @@ package main
 
 import "fmt"
 
-const englishHelloPrefix = "Hello, "
-const spanishHelloPrefix = "Hola, "
-const frenchHelloPrefix = "Bonjour, "
-const spanish = "Spanish"
-const french = "French"
+const (
+	englishHelloPrefix = "Hello, "
+	spanishHelloPrefix = "Hola, "
+	frenchHelloPrefix  = "Bonjour, "
 
-func Hello(name, language string) string {
+	spanish = "Spanish"
+	french  = "French"
+)
+
+// public functions start with uppercase letter
+func Hello(name string, language string) string {
 	if name == "" {
 		name = "World"
 	}
 
-	helloPrefix := englishHelloPrefix
+	return greetingPrefix(language) + name
+}
 
+// private functions start with lowercase letter -> convention
+func greetingPrefix(language string) (prefix string) {
 	switch language {
-	case "French":
-		helloPrefix = frenchHelloPrefix
-	case "Spanish":
-		helloPrefix = spanishHelloPrefix
+	case french:
+		prefix = frenchHelloPrefix
+	case spanish:
+		prefix = spanishHelloPrefix
+	default:
+		prefix = englishHelloPrefix
 	}
-
-	return helloPrefix + name
+	return
 }
 
 func main() {
